@@ -7,6 +7,7 @@ public class CarController : MonoBehaviour
     [SerializeField] Rigidbody rb;
     [SerializeField] float speed;
     [SerializeField] float rotationRate;
+    [SerializeField] float maxSpeed;
     void Start()
     {
         
@@ -27,5 +28,7 @@ public class CarController : MonoBehaviour
                 transform.eulerAngles += Vector3.up * rotationRate * h * Time.deltaTime * mult;
             }
         }
+
+        rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed);
     }
 }
